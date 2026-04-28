@@ -113,7 +113,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 
 ---
 
-## My Approach: (Agile: Learn, build, repeat): This is sprint-1. 
+## My Approach: (Agile: Learn, Build, Repeat): This is sprint-1. 
 
 **Research/Learn (Stripe payment API):**
 - Learn about Stripe Payment Element and compare it with my existing knowledge of payment integrations such as PayPal element, where you get a JS and html element to copy paste. 
