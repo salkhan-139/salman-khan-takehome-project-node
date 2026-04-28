@@ -1,3 +1,7 @@
+<script src="https://js.stripe.com/v3/"></script>
+
+
+
 <div class="row justify-content-md-center">
   <div class="col-6">
     <div class="text-center mt-40">
@@ -20,13 +24,59 @@
             <input type="email" class="form-control" id="email" name="email" placeholder="you@email.com">
           </div>
           <div class="mt-20 text-center text-secondary border-placeholder">
-            Add Stripe Element here!
+            <div id="payment-element"></div>
           </div>
           <div class="mt-20">
             <button type="submit" class="btn btn-lg btn-block btn-primary">Pay $<span class="amount" data-amount="{{amount}}"></span></button>
-          </div>
+          </div>  
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+
+
+const stripe = Stripe("{{publishableKey}}");
+
+
+  async function init() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const item = urlParams.get("item");
+
+    const res = await fetch("/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ item })
+    });
+
+    const { clientSecret } = await res.json();
+
+    const elements = stripe.elements({ clientSecret });
+    console.log("Client_Secret:"+clientSecret);
+    const paymentElement = elements.create("payment");
+    paymentElement.mount("#payment-element");
+
+    document.querySelector("form[name='payment-form']").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: "http://localhost:3000/success"
+        }
+      });
+
+      if (error) {
+        alert(error.message);
+      }
+    }); 
+  }
+
+  init();
+</script>
+

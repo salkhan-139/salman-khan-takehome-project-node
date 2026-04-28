@@ -7,7 +7,14 @@
   </div>
   <div class="mt-40 text-center">
     <div class="mt-20 text-center text-secondary border-placeholder">
-      Add details about the payment here!
+      <div>
+        <span>Total Amount:</span>
+        <code> {{amount}} {{currency}}</code>
+      </div>
+      <div>
+        <span>Stripe Payment ID:</span>
+        <code>{{paymentIntentId}}</code>
+      </div>
     </div>
   </div>
 </main>
