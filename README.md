@@ -84,7 +84,91 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 
 ---
 
-How does the solution work? Which Stripe APIs does it use? How is your application architected?
-How did you approach this problem? Which docs did you use to complete the project? What challenges did you encounter?
-How you might extend this if you were building a more robust instance of the same application.
+## Current Architecture 
+
+- It’s more of a monolith, where the backend and front-end are not truly separate. 
+- One Node/Express app process, server-rendered views, and a Stripe-backed payment flow, with a few important basic security implementations.
+- At a high level, the app follows a MVC-style server-rendered web architecture:
+- **Model:** config/catalog.js (server-trusted product + pricing config) a quick modification to avoid client side product tampering. 
+- **Controller layer:** route handlers in app.js (/, /checkout, /create-payment-intent, /success).
+- **View layer:** Handlebars templates in views/ (index.hbs, checkout.hbs, success.hbs, layout in views/layouts/main.hbs).
+- **Integration:** Stripe API calls from backend only, Making it more secure. 
+
+## Architecture trade-off made so far:
+
+- Stick to Server-side rendering with Handlebars (.hbs)
+- Kept Express + Handlebars instead of moving to React/tsx, for lower engineering efforts and near full rewrite. Also a scope for an upgrade to React/tsx.
+- The app is still mostly in app.js (single deployable unit).
+
+**While most of the app architecture is kept intact, some critical changes had to be made to introduce a basic level of security.** 
+
+- Introduced a boundary by moving catalog/pricing to config/catalog.js (backend). Preparing before splitting into route/service modules in future.
+- Critical architectural decision: pricing is treated as server decision, not client authority.
+- Introduced SESSION_SECRET and session usage to bind checkout state to make sure it’s the same user doing checkout.
+
+**What it is not (yet):**
+- Not a SPA architecture.
+- Not clean/layered architecture with strict module separation yet.
+- Not event-driven architecture yet.
+
+---
+
+## My Approach: (Agile: Learn, build, repeat): This is sprint-1. 
+
+**Research/Learn (Stripe payment API):**
+- Learn about Stripe Payment Element and compare it with my existing knowledge of payment integrations such as PayPal element, where you get a JS and html element to copy paste. 
+- Used this YouTube [video](https://www.youtube.com/watch?v=aW6AcSR1Oyg) as a starting point to understand Stripe Checkout Flow, Payment Element, embedded and redirect. 
+
+**Build MVP** 
+- **First impression** 
+  - Uses hbs (handlers) : not very modern
+  - A complete monolith : No separation of concern (backend-frontend)
+  - Everything is in app.js , generally we have server.js and app.js and other supporting js files, defining boundaries clearly.
+  - Missing integration to Stripe payment (expected)
+  - Noticing the placeholders - helped understanding the task further.
+  - Hard coded item list, no Database, or not even a model for it.
+  - Use of Query parameters (Not a best practice)
+     
+- **Decisions and dilemmas (Challenges)** 
+  - Thought about migrating to React, however in real life, you rarely change the entire architecture without consulting the user. 
+  - Keeping the user first in mind, Decided to implement the feature requested without over-engineering and leave the upgrades for further consultations. 
+  - Not to over-engineer the solution.
+  - Build the MVP and iterate over it to improve the quality.
+  - Got the payment integration working and testing the API success.
+  - Decision to include critical security fixes: Decided to fix absolute critical security loopholes as part of MVP, leaving other major changes for the roadmap. Therefore a necessary and explainable       changes were made such as, 
+    -  Moving items and the API interaction to the backend, saving the application from potential request tampering.
+    -  Introduced session to double down on this protection.
+- **Use of AI**
+  - Whilst I generally use codex or vibe coding for my mini projects/ POCs, I decided not to use them extensively (writing code on my behalf) for the sake of my own understanding.
+  - AI definitely helped me with hbs files which I have little experience with. I knew that they’re not far off from any other JS frameworks out there, but use of AI definitely cuts down the time to        experiment and learn significantly.
+
+## APIs used and Documents reffered:
+
+- Payment Intents API : https://docs.stripe.com/api/payment_intents
+- https://docs.stripe.com/api
+- https://docs.stripe.com/payments/payment-element/best-practices
+- https://docs.stripe.com/payments/link/add-link-elements-integration
+- https://docs.stripe.com/js/elements_object/create_payment_element
+- YouTube Video : https://www.youtube.com/watch?v=aW6AcSR1Oyg
+
+---
+	
+## Target Architecture: 
+
+- Clear separation of concerns: Separate backend and frontend, introduce services.
+- Easier testing (routes/services isolated)
+- Safer payment (webhook) : I am sure there are more security related aspects Stripe APIs might cover.
+- Introduce a DB for catalog
+
+## Immediate Next Steps:
+- Migrate to React/tsx with routes: Front-end
+- Build solid Python/NextJS: Backend  
+- Use Services : Checkout, Payment, Catalog
+
+## Proposed features (production-ready MVP):
+- Login
+- Cart
+- Orders
+- Support
+
 
