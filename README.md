@@ -16,7 +16,7 @@ The app lets a user:
 
 To integrate this app with Stripe, create a Stripe demo/test account and generate API keys:
 
-** In order to integrate this app with Stripe you need to generate your API keys with a demo account [here](https://dashboard.stripe.com/register) **
+**In order to integrate this app with Stripe you need to generate your API keys with a demo account [here](https://dashboard.stripe.com/register)**
 
 Copy the following keys, Keep the keys we will need them for setup:
 
