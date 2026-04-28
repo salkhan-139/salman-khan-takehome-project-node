@@ -84,7 +84,12 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 
 ---
 
+
+<details>
+<summary>
+
 ## Current Architecture 
+</summary>
 
 - It’s more of a monolith, where the backend and front-end are not truly separate. 
 - One Node/Express app process, server-rendered views, and a Stripe-backed payment flow, with a few important basic security implementations.
@@ -111,9 +116,15 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - Not clean/layered architecture with strict module separation yet.
 - Not event-driven architecture yet.
 
+</details>
+
 ---
 
-## My Approach: (Agile: Learn, Build, Repeat): This is sprint-1. 
+<details>
+<summary>
+
+## My Approach: (Agile: Learn, Build, Repeat): Sprint-1. 
+</summary>
 
 **Research/Learn (Stripe payment API):**
 - Learn about Stripe Payment Element and compare it with my existing knowledge of payment integrations such as PayPal element, where you get a JS and html element to copy paste. 
@@ -141,8 +152,16 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - **Use of AI**
   - Whilst I generally use codex or vibe coding for my mini projects/ POCs, I decided not to use them extensively (writing code on my behalf) for the sake of my own understanding.
   - AI definitely helped me with hbs files which I have little experience with. I knew that they’re not far off from any other JS frameworks out there, but use of AI definitely cuts down the time to        experiment and learn significantly.
+ 
+</details>
 
+---
+
+<details>
+<summary>
+	
 ## APIs used and Documents reffered:
+</summary>
 
 - Payment Intents API : https://docs.stripe.com/api/payment_intents
 - https://docs.stripe.com/api
@@ -151,16 +170,30 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - https://docs.stripe.com/js/elements_object/create_payment_element
 - YouTube Video : https://www.youtube.com/watch?v=aW6AcSR1Oyg
 
+</details>
+
 ---
+
+<details>
+<summary>
 	
 ## Target Architecture: 
+</summary>
 
 - Clear separation of concerns: Separate backend and frontend, introduce services.
 - Easier testing (routes/services isolated)
 - Safer payment (webhook) : I am sure there are more security related aspects Stripe APIs might cover.
 - Introduce a DB for catalog
 
+</details>
+
+---
+
+<details>
+<summary>
+
 ## Immediate Next Steps:
+</summary>
 - Migrate to React/tsx with routes: Front-end
 - Build solid Python/NextJS: Backend  
 - Use Services : Checkout, Payment, Catalog
@@ -170,5 +203,5 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - Cart
 - Orders
 - Support
-
+</details>
 
