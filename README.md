@@ -57,6 +57,7 @@ Your application is almost set.
 ```
 cp sample.env .env
 ```
+Open .env in any editor.
 
 - **Publishable key** (`pk_test_...`) : Populate it from your Stripe Dashboard
 - **Secret key** (`sk_test_...`) : Populate it from your Strip Dashboard
