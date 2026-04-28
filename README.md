@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a demo Node.js app that showcases a simple **book purchase flow** with payment integration using the **Stripe** platform.
+This is a demo app that showcases a simple **book purchase flow** with payment integration using the **Stripe** platform.
 
 The app lets a user:
 1. Select a book from a catalog
@@ -16,9 +16,13 @@ The app lets a user:
 
 To integrate this app with Stripe, create a Stripe demo/test account and generate API keys:
 
-**In order to integrate this app with Stripe you need to generate your API keys with a demo account [here](https://dashboard.stripe.com/register)**
+**In order to integrate this app with Stripe you need to generate your API keys with a demo account **
 
-Copy the following keys, Keep the keys we will need them for setup:
+**Step 1:** Create Stripe account [here](https://dashboard.stripe.com/register)
+
+`Note : To register with Stripe, you can use any company name. Once on Dashboard find a **<developer>** bottom left corner to find API key`
+
+Have these keys saved, It will be required later:
 
 - **Publishable key** (`pk_test_...`) for frontend initialization
 - **Secret key** (`sk_test_...`) for backend PaymentIntent creation
@@ -36,7 +40,7 @@ Copy the following keys, Keep the keys we will need them for setup:
 
 ## Project Setup
 
-1. Install dependencies:
+**Step 2: Get Code and Install dependencies:**
 
 ```bash
 
@@ -46,7 +50,9 @@ npm install
 
 ```
 
-Your application is almost set. Copy sample.env to .env or simply rename it.
+Your application is almost set.
+
+**Step 3:Copy sample.env to .env or simply rename it.**
 
 ```
 cp sample.env .env
@@ -61,7 +67,7 @@ openssl rand -base64 48
 
 Once you have copied all the details in the .env file.
 
-Run the application with npm on your root project directory. 
+**Step 4: Run the application with npm on your root project directory** 
 ```
 npm start
 ``` 
