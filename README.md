@@ -16,22 +16,22 @@ The app lets a user:
 
 To integrate this app with Stripe, create a Stripe demo/test account and generate API keys:
 
-**In order to integrate this app with Stripe you need to generate your API keys with a demo account **
+**In order to integrate this app with Stripe you need to generate your API keys with a demo account**
 
 **Step 1:** Create Stripe account [here](https://dashboard.stripe.com/register)
 
-`Note : To register with Stripe, you can use any company name. Once on Dashboard find a **<developer>** bottom left corner to find API key`
+`Note : To register with Stripe, you can use any company name. Once on Dashboard, Click <Developers> bottom left corner to find API keys`
 
 Have these keys saved, It will be required later:
 
 - **Publishable key** (`pk_test_...`) for frontend initialization
-- **Secret key** (`sk_test_...`) for backend PaymentIntent creation
+- **Secret key** (`sk_test_...`) for backend interaction with Stripe
 
 ---
 
 ## Prerequisites
 
-- Node.js (v19+ recommended for this app): Find more information about installing node [here] (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- Node.js (v19+ recommended for this app): Find more information about installing node [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - npm (v9+ recommended for this app)
 - ```node -v``` will give you node version
 - Stripe demo/test account
@@ -61,12 +61,16 @@ Open .env in any editor.
 
 - **Publishable key** (`pk_test_...`) : Populate it from your Stripe Dashboard
 - **Secret key** (`sk_test_...`) : Populate it from your Strip Dashboard
-- **Session Secret** (`sk_test_...`) : generate a long random key using the following
+- **Session Secret** (`sk_test_...`) : generate a long random key using the following command in terminal for mac users.
 ```
 openssl rand -base64 48
 ```
+- If you are windows user you can use the following in command prompt or PowerShell (MAC user can also use this alternative)
+```
+node -e "console.log(require('crypto').randomBytes(48).toString('base64'))"
+```
 
-Once you have copied all the details in the .env file.
+Once you have copied all the details in the .env file. Make sure `.env` is at the root directory of your project.
 
 **Step 4: Run the application with npm on your root project directory** 
 ```
@@ -152,7 +156,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 <details>
 <summary>
 
-## My Approach:(Agile:Learn,Build,Repeat):Sprint-1. 
+## Approach (Agile:Learn,Build,Repeat):Sprint-1. 
 </summary>
 
 **Research/Learn (Stripe payment API):**
@@ -238,8 +242,8 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 
 ## Immediate Next Steps:
 </summary>
-- Migrate to React/tsx with routes: Front-end
-- Build solid Python/NextJS: Backend  
+- Migrate frontend to React/tsx with routes
+- Solidify backend using Python/NextJS
 - Use Services : Checkout, Payment, Catalog
 - Use Webhook to manage payment flow
 
