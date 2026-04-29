@@ -166,7 +166,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - Used this YouTube [video](https://www.youtube.com/watch?v=aW6AcSR1Oyg) as a starting point to understand Stripe Checkout Flow, Payment Element, embedded and redirect. 
 
 **Build MVP** 
-- **First impression** 
+- **First impression on the code** 
   - Uses hbs (handlers) : not very modern
   - A complete monolith : No separation of concern (backend-frontend)
   - Everything is in app.js , generally we have server.js and app.js and other supporting js files, defining boundaries clearly.
@@ -175,18 +175,21 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
   - Hard coded item list, no Database, or not even a model for it.
   - Use of Query parameters (Not a best practice)
      
-- **Decisions and dilemmas (Challenges)** 
-  - Thought about migrating to React, however in real life, you rarely change the entire architecture without consulting the user. 
+- **Plan, Decisions and Challenges** 
+  - Struggled to draw a boundary for the scope of the project. 
   - Decided to implement the feature requested without over-engineering and leave the upgrades for further consultations. 
-  - **Not to over-engineer the solution.**
+  - Challenge was **Not to over-engineer the solution.**
   - Build the MVP and iterate over it to improve the quality.
   - Understanding Stripe PaymentIntent lifecycle
-  - Got the payment integration working and testing the API success.
-  - Decision to include critical security fixes: Decided to fix absolute critical security loopholes as part of MVP, leaving other major changes for the roadmap. 
+  - Achieved payment integration with Stripe and tested the API success.
+  - Decision to include critical security fixes: Decided to fix absolute critical security loopholes as part of MVP, leaving other major changes for the roadmap.
+- **README Test**
+  - Kept the repo private, tested the code and README guide with other account for the end to end setup, before making it public.
+  - Had my partner(not so technical user) to simply follow the guide and setup the project as a user acceptance testing for the guide iteslef.
 
 - **Use of AI**
-  - Whilst I generally use codex or vibe coding for my mini projects/ POCs, I decided not to use them extensively (writing code on my behalf) for the sake of my own understanding.
-  - AI definitely helped me with hbs files which I have little experience with. I knew that they’re not far off from any other JS frameworks out there, but use of AI definitely cuts down the time to experiment and learn significantly.
+  - Whilst I generally use codex or vibe coding for my mini projects/POCs, I decided not to use them extensively (writing code on my behalf) for the sake of my own understanding.
+  - AI definitely helped me with understanding hbs files which I have little experience with. I knew that they’re not far off from any other JS frameworks out there, but use of AI definitely cuts down the time to experiment and learn significantly.
  
 </details>
 
@@ -248,6 +251,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - Solidify backend using Python/NextJS
 - Use Services : Checkout, Payment, Catalog
 - Use Webhook to manage payment flow
+- Use AI to help accelerate the project but as source of truth.
 
 ## Proposed features (production-ready MVP):
 - Login
