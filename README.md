@@ -191,6 +191,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 
 ## Security Considerations
 </summary>
+
 - Stripe Secret Key is stored securely in backend
 - Publishable Key is exposed to frontend
 - Payment amount is calculated server-side
