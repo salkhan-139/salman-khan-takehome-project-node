@@ -135,12 +135,12 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 ## Architecture trade-off made so far:
 
 - Stick to Server-side rendering with Handlebars (.hbs)
-- Kept Express + Handlebars instead of moving to React/tsx, for lower engineering efforts and near full rewrite. Also a scope for an upgrade to React/tsx.
+- Kept Express + Handlebars instead of moving to React/tsx, for lower engineering efforts and near full rewrite. Also a scope for an upgrade to React/tsx as next step.
 - The app is still mostly in app.js (single deployable unit).
 
 **While most of the app architecture is kept intact, some critical changes had to be made to introduce a basic level of security.** 
 
-- Introduced a boundary by moving catalog/pricing to config/catalog.js (backend). Preparing before splitting into route/service modules in future.
+- Introduced a separation by moving hardcoded items to config/catalog.js (backend). Preparing before splitting into route/service modules in future.
 - Critical architectural decision: pricing is treated as server decision, not client authority.
 - Introduced SESSION_SECRET and session usage to bind checkout state to make sure it’s the same user doing checkout.
 
@@ -148,6 +148,8 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - Not a SPA architecture.
 - Not clean/layered architecture with strict module separation yet.
 - Not event-driven architecture yet.
+- Not fully secure with PCI complaiance.
+- Not Production Ready
 
 </details>
 
