@@ -61,7 +61,7 @@ Open .env in any editor.
 
 - **Publishable key** (`pk_test_...`) : Populate it from your Stripe Dashboard
 - **Secret key** (`sk_test_...`) : Populate it from your Strip Dashboard
-- **Session Secret** (`sk_test_...`) : generate a long random key using
+- **Session Secret** (`sk_test_...`) : generate a long random key using the following
 ```
 openssl rand -base64 48
 ```
@@ -130,7 +130,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 <details>
 <summary>
 
-## My Approach: (Agile: Learn, Build, Repeat): Sprint-1. 
+## My Approach:(Agile:Learn,Build,Repeat):Sprint-1. 
 </summary>
 
 **Research/Learn (Stripe payment API):**
