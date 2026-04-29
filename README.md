@@ -89,6 +89,17 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - Click Pay
 - Notice the Success Message with the payment details `amount` and `Payment Intent ID: pi_...`
 
+## Payment Flow: Behind the Scene
+
+1. User clicks Pay
+2. Frontend calls /create-payment-intent
+3. Backend creates PaymentIntent
+4. Returns clientSecret
+5. Payment Element renders
+6. User submits payment
+7. Stripe confirms payment
+8. Redirect to success page
+
 ---
 
 
@@ -104,7 +115,18 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - **Model:** config/catalog.js (server-trusted product + pricing config) a quick modification to avoid client side product tampering. 
 - **Controller layer:** route handlers in app.js (/, /checkout, /create-payment-intent, /success).
 - **View layer:** Handlebars templates in views/ (index.hbs, checkout.hbs, success.hbs, layout in views/layouts/main.hbs).
-- **Integration:** Stripe API calls from backend only, Making it more secure. 
+- **Integration:** Stripe API calls from backend only, Making it more secure.
+
+**Frontend**
+- Collects payment details using Stripe Payment Element
+- Calls backend to create PaymentIntent
+
+**Backend (Node/Express)**
+- Creates PaymentIntent using Stripe API
+- Returns clientSecret
+
+**Stripe**
+- Handles secure payment processing
 
 ## Architecture trade-off made so far:
 
@@ -149,17 +171,31 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
      
 - **Decisions and dilemmas (Challenges)** 
   - Thought about migrating to React, however in real life, you rarely change the entire architecture without consulting the user. 
-  - Keeping the user first in mind, Decided to implement the feature requested without over-engineering and leave the upgrades for further consultations. 
-  - Not to over-engineer the solution.
+  - Decided to implement the feature requested without over-engineering and leave the upgrades for further consultations. 
+  - **Not to over-engineer the solution.**
   - Build the MVP and iterate over it to improve the quality.
+  - Understanding Stripe PaymentIntent lifecycle
   - Got the payment integration working and testing the API success.
-  - Decision to include critical security fixes: Decided to fix absolute critical security loopholes as part of MVP, leaving other major changes for the roadmap. Therefore a necessary and explainable       changes were made such as, 
-    -  Moving items and the API interaction to the backend, saving the application from potential request tampering.
-    -  Introduced session to double down on this protection.
+  - Decision to include critical security fixes: Decided to fix absolute critical security loopholes as part of MVP, leaving other major changes for the roadmap. 
+
 - **Use of AI**
   - Whilst I generally use codex or vibe coding for my mini projects/ POCs, I decided not to use them extensively (writing code on my behalf) for the sake of my own understanding.
-  - AI definitely helped me with hbs files which I have little experience with. I knew that they’re not far off from any other JS frameworks out there, but use of AI definitely cuts down the time to        experiment and learn significantly.
+  - AI definitely helped me with hbs files which I have little experience with. I knew that they’re not far off from any other JS frameworks out there, but use of AI definitely cuts down the time to experiment and learn significantly.
  
+</details>
+
+---
+
+<details>
+<summary>
+
+## Security Considerations
+</summary>
+- Stripe Secret Key is stored securely in backend
+- Publishable Key is exposed to frontend
+- Payment amount is calculated server-side
+- Client cannot manipulate price
+
 </details>
 
 ---
@@ -204,6 +240,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the index pag
 - Migrate to React/tsx with routes: Front-end
 - Build solid Python/NextJS: Backend  
 - Use Services : Checkout, Payment, Catalog
+- Use Webhook to manage payment flow
 
 ## Proposed features (production-ready MVP):
 - Login
