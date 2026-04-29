@@ -57,7 +57,7 @@ const stripe = Stripe("{{publishableKey}}");
     const { clientSecret } = await res.json();
 
     const elements = stripe.elements({ clientSecret });
-    console.log("Client_Secret:"+clientSecret);
+    //console.log("Client_Secret:"+clientSecret);
     const paymentElement = elements.create("payment");
     paymentElement.mount("#payment-element");
 

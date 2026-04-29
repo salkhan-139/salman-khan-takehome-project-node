@@ -8,7 +8,7 @@ const exphbs = require('express-handlebars');
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-console.log("Stripe Secret:"+stripe)
+//console.log("Stripe Secret:"+stripe)
 
 var app = express();
 
@@ -44,32 +44,13 @@ app.get('/', function(req, res) {
 app.get('/checkout', function(req, res) {
 
   const item = req.query.item;
-  let title, amount, error;
-  console.log("Items:"+item);
-
-  switch (item) {
-    case '1':
-      title = "The Art of Doing Science and Engineering"
-      amount = 2300      
-      break;
-    case '2':
-      title = "The Making of Prince of Persia: Journals 1985-1993"
-      amount = 2500
-      break;     
-    case '3':
-      title = "Working in Public: The Making and Maintenance of Open Source"
-      amount = 2800  
-      break;     
-    default:
-      // Included in layout view, feel free to assign error
-      error = "No item selected"      
-      break;
-  }
+  const product = catalog[item];
+  const error = product ? undefined : "No item selected";
 
 
   res.render('checkout', {
-    title: title,
-    amount: amount,
+    title: product?.title,
+    amount: product?.amount,
     publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
     error: error
   });
